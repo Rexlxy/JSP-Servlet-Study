@@ -15,6 +15,29 @@ function reset(){
 	document.getElementById("userName").value="";
 	document.getElementById("passWord").value="";
 }
+
+<%
+	String userName = null;
+	String pwd = null;
+	Cookie[] cookies = request.getCookies();
+	for(int i=0; cookies!=null && i<cookies.length;i++ ){
+		if(cookies[i].getName().equals("userNameAndPwd")){
+			userName = cookies[i].getValue().split("-")[0];
+			pwd = cookies[i].getValue().split("-")[1];
+
+		}
+	}
+	System.out.println("In the response3 page:");
+	System.out.println("Username is: "+ userName);
+	System.out.println("Passwrod is: " + pwd);
+	if(userName == null){
+		userName = "";
+	}
+	
+	if(pwd == null){
+		pwd = "";
+	}
+%>
 </script>
 <body>
 	<form action="userLogin.jsp" method="post">
@@ -22,11 +45,11 @@ function reset(){
 			<caption>Login</caption>
 			<tr>
 				<td>User Name:</td>
-				<td><input type="text" id="userName" name="userName" /></td>
+				<td><input type="text" id="userName" name="userName" value="<%=userName %>" /></td>
 			</tr>
 			<tr>
 				<td>Pass Word:</td>
-				<td><input type="password" id="passWord" name="passWord" /></td>
+				<td><input type="password" id="passWord" name="passWord" value="<%=pwd %>" /></td>
 			</tr>
 			<tr>
 				<td>Remember your password</td>

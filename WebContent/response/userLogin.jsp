@@ -25,7 +25,7 @@
 			response.addCookie(userNameAndPwd);
 			System.out.println("Successfully set cookie!!!");
 		}
-		//response.sendRedirect("response3.jsp");
+		response.sendRedirect("response3.jsp");
 	%>
 </body>
 </html>
